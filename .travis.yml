@@ -1,0 +1,13 @@
+sudo: required
+
+services:
+  - docker
+
+before_script:
+  - sudo apt-get -y install python3-pip && sudo pip3 install coveralls
+
+script:
+- make integration CI=1
+
+after_success:
+  - coveralls --verbose

@@ -1,7 +1,4 @@
-FROM python:3.7-rc-slim
-
-RUN pip install django && \
-    pip install djangorestframework
+FROM dutradda/ll-employee-manager-base
 
 COPY manage.py /ll-employee-manager/manage.py
 COPY ll_employee_manager /ll-employee-manager/
