@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.static import static
 from rest_framework.routers import SimpleRouter
 
 from . import views
@@ -16,4 +18,4 @@ router.register(r'employee', views.EmployeeViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
