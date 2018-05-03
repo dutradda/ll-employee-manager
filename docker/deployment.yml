@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-manager
+  labels:
+    app: employee-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-manager
+  template:
+    metadata:
+      labels:
+        app: employee-manager
+    spec:
+      containers:
+      - name: employee-manager
+        image: dutradda/ll-employee-manager
+        ports:
+        - containerPort: 8000
+      - name: employee-manager-nginx
+        image: dutradda/ll-employee-manager-nginx
+        ports:
+        - containerPort: 8080

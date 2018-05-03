@@ -23,12 +23,6 @@ $ make dev-server
 $ make
 ```
 
-- Running the deployment version of the server (with gunicorn):
-
-```shell
-$ make run-deploy
-```
-
 - Running the develop environment with a new database:
 
 ```shell
@@ -37,6 +31,40 @@ $ mv db.sqlite3 db.sqlite3.bkp && \
   make dev-superuser && \
   make dev-server
 ```
+
+
+### Deploy
+
+- Create the kubernetes deployment (please, configure and install the [kubectl]() properly):
+
+```shell
+$ make create-deploy
+
+deployment.apps "employee-manager" created
+service "employee-manager" exposed
+"Waiting, endpoint for service is not ready yet..."
+http://192.168.99.100:31352 # the ip and port can be others
+
+```
+
+- You will need to change the `/etc/hosts` of your machine according to the cluster ip:
+
+```shell
+192.168.99.100        employee-manager
+```
+
+- You can update the deployment version according to the repository VERSION file:
+
+```shell
+$ make update-deploy
+```
+
+- Deleting the deployment:
+
+```shell
+$ make delete-deploy
+```
+
 
 ### Features
 

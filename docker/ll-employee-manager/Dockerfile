@@ -1,8 +1,10 @@
 FROM dutradda/ll-employee-manager-base
 
-COPY manage.py /ll-employee-manager/manage.py
-COPY ll_employee_manager /ll-employee-manager/
+RUN pip install gunicorn
+
+COPY dist/ll-employee-manager /ll-employee-manager
+COPY nginx.conf /etc/sites-enabled/employee-manager.conf
 
 EXPOSE 8000
 
-ENTRYPOINT python /ll-employee-manager/manage.py runserver
+ENTRYPOINT gunicorn -b :8000 luizalabs.wsgi
